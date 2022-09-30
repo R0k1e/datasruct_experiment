@@ -12,6 +12,7 @@ bool determine(int n, int x, int y)
     int count, pre, cur;
     cur = 0;
     pre = n - 1;
+    if (x>n) return false;
     for (int i = 0; i < n; i++)
     {
         if (i != n - 1)
