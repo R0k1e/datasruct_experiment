@@ -1,12 +1,13 @@
 #include<stdio.h>
 #include<time.h>
 #include<stdlib.h>
-#define M1 7
-#define N1 8
-#define T1 27
-#define M2 7
-#define N2 8
-#define T2 23
+#include<windows.h>
+#define M1 7//矩阵A 行数
+#define N1 8//矩阵A 列数
+#define T1 27//矩阵A 有效值个数
+#define M2 7//矩阵B 行数
+#define N2 8//矩阵B 列数
+#define T2 23//矩阵B 有效值个数
  
 
 void prinFile(FILE *fp,int m,int n,int t)
@@ -32,8 +33,8 @@ void prinFile(FILE *fp,int m,int n,int t)
 		}
 		c[i][j]=1;
 	}
+	Sleep(1000);//延迟
 	fprintf(fp,"%d %d %d\n",m,n,t);
-	//for(int count=0;count<T1;count++)
 	int count=0;
 	{
 		for(i=0;i<m;i++)
