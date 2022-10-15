@@ -2,12 +2,12 @@
 #include<time.h>
 #include<stdlib.h>
 #include<windows.h>
-#define M1 7//矩阵A 行数
-#define N1 8//矩阵A 列数
-#define T1 27//矩阵A 有效值个数
-#define M2 7//矩阵B 行数
-#define N2 8//矩阵B 列数
-#define T2 23//矩阵B 有效值个数
+#define M1 2//矩阵A 行数
+#define N1 2//矩阵A 列数
+#define T1 4//矩阵A 有效值个数
+#define M2 2//矩阵B 行数
+#define N2 2//矩阵B 列数
+#define T2 4//矩阵B 有效值个数
  
 
 void prinFile(FILE *fp,int m,int n,int t)
