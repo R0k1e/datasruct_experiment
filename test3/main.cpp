@@ -1,5 +1,6 @@
 #include <fstream>
 #include <iostream>
+#include <cstring>
 struct element
 {
     int i, j;  // i行j列
@@ -89,7 +90,8 @@ void multiple(const sparmattp *a, const sparmattp *b, sparmattp *c) // 两矩阵
 {
     int l, m, n, i, j;
     l = 0, m = 0, n = 0;
-    int d[a->m][b->n] = {0};
+    int d[a->m][b->n];
+    memset(d,0,sizeof(int)*(a->m)*(b->n));
 
     while (m < a->t)
     {
@@ -105,7 +107,7 @@ void multiple(const sparmattp *a, const sparmattp *b, sparmattp *c) // 两矩阵
         }
         m++;
     }
-    c->data = new element[m*n];
+    c->data = new element[a->m*b->n]();
     l = 0;
     for (i = 0; i < a->m; i++)
     {
