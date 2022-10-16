@@ -162,6 +162,8 @@ int judge_multiple(const sparmattp *a, const sparmattp *b) //判断能否相乘
 }
 void output(const sparmattp *a) //输出最后矩阵 
 {
+    if (a->t == 0 )
+        cout << "NULL" <<endl;
     for (int i = 0; i < a->t; i++)
     {
         cout << "row " << a->data[i].i << endl;
