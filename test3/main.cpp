@@ -105,6 +105,8 @@ void multiple(const sparmattp *a, const sparmattp *b, sparmattp *c) // 两矩阵
         }
         m++;
     }
+    c->data = new element[m*n];
+    l = 0;
     for (i = 0; i < a->m; i++)
     {
         for (j = 0; j < b->n; j++)
