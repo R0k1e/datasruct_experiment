@@ -2,19 +2,20 @@
 #include<stdlib.h>
 #include<string.h>
 
-
+//è¾“å…¥æ–‡ä»¶åä¸ºin.txt
+//è¾“å‡ºæ–‡ä»¶åä¸ºlock.txt
 typedef struct Node{
 	int weight,parent,lc,rc;
 	char *code;
-}Node;//Ê÷¸÷½ÚµãµÄ½á¹¹ 
+}Node;//æ ‘å„èŠ‚ç‚¹çš„ç»“æ„ 
 
 typedef struct Htree_head{
 	char flag[5];
 	char last;
 	char unused[10];
-}Fhead; //ÔªÊı¾İ½á¹¹ 
+}Fhead; //å…ƒæ•°æ®ç»“æ„ 
 
-void initHtree(Node *ht)//Ê÷µÄ³õÊ¼»¯ 
+void initHtree(Node *ht)//æ ‘çš„åˆå§‹åŒ– 
 {
 	for(int i=0;i<512;i++)
 	{
@@ -26,7 +27,7 @@ void initHtree(Node *ht)//Ê÷µÄ³õÊ¼»¯
 	}
 	
 }
-int createHtree(Node *ht,int *Num)//´´½¨¹ş·òÂüÊ÷ 
+int createHtree(Node *ht,int *Num)//åˆ›å»ºå“ˆå¤«æ›¼æ ‘ 
 {
 	unsigned char word;
 	FILE *fp=fopen("in.txt","rb");
@@ -38,12 +39,12 @@ int createHtree(Node *ht,int *Num)//´´½¨¹ş·òÂüÊ÷
 		word=fgetc(fp);
 	}
 	fclose(fp);
-	/*´®ÁªÊ÷µÄ¸÷½áµã£¬°´ÕÕ¹ş·òÂü±àÂë*/
+	/*ä¸²è”æ ‘çš„å„ç»“ç‚¹ï¼ŒæŒ‰ç…§å“ˆå¤«æ›¼ç¼–ç */
 	int i,j,k,m;
 	for(i=256;i<511;i++)
 	{
 		j=-1,k=-1;
-		for(int l=0;l<i;l++)//Ñ°ÕÒÈ¨×îĞ¡µÄÁ½¸ö½áµã£¬j½áµãµÄÈ¨²»´óÓÚk½áµãÈ¨ 
+		for(int l=0;l<i;l++)//å¯»æ‰¾æƒæœ€å°çš„ä¸¤ä¸ªç»“ç‚¹ï¼Œjç»“ç‚¹çš„æƒä¸å¤§äºkç»“ç‚¹æƒ 
 		{
 			if(ht[l].parent==-1&&ht[l].weight!=0){
 				if(j==-1){
@@ -65,7 +66,7 @@ int createHtree(Node *ht,int *Num)//´´½¨¹ş·òÂüÊ÷
 				k=l;
 			}
 		}
-		if(k==-1)//Ö»Ê£ÏÂÒ»¸öÃ»ÓĞË«Ç×µÄ½Úµã£¬ÓÖ½Ğ¸ù 
+		if(k==-1)//åªå‰©ä¸‹ä¸€ä¸ªæ²¡æœ‰åŒäº²çš„èŠ‚ç‚¹ï¼Œåˆå«æ ¹ 
 		break;
 		ht[j].parent=i;
 		ht[k].parent=i;
@@ -75,7 +76,7 @@ int createHtree(Node *ht,int *Num)//´´½¨¹ş·òÂüÊ÷
 	}
 	return j;
 }
-void getHCode(Node *ht,int root,int index,char *code)//Éú³É¹ş·òÂü±àÂë 
+void getHCode(Node *ht,int root,int index,char *code)//ç”Ÿæˆå“ˆå¤«æ›¼ç¼–ç  
 {
 	char Code[256];
 	strcpy(Code,code);
@@ -94,7 +95,7 @@ void getHCode(Node *ht,int root,int index,char *code)//Éú³É¹ş·òÂü±àÂë
 	}
 }
 
-//È¡×îºóÒ»¸ö×Ö½ÚµÄÓĞĞ§Î»Êı
+//å–æœ€åä¸€ä¸ªå­—èŠ‚çš„æœ‰æ•ˆä½æ•°
 int getlastValidBit(Node *ht) {
 	int sum = 0;
 	int i;
@@ -113,22 +114,22 @@ int main()
 	Node ht[511];
 	int root=-1;
 	int Num[256]={};
-	initHtree(ht);//Ê÷µÄ³õÊ¼»¯ 
-	root=createHtree(ht,Num);//´´½¨Ê÷²¢·µ»Ø¸ù 
-	char Code[256]={};//¿ª±Ù¿Õ¼äÓÃÓÚ±£´æ¹ş·òÂü±àÂë 
-	getHCode(ht,root,0,Code);//Éú³É¹ş·òÂü±àÂë 
+	initHtree(ht);//æ ‘çš„åˆå§‹åŒ– 
+	root=createHtree(ht,Num);//åˆ›å»ºæ ‘å¹¶è¿”å›æ ¹ 
+	char Code[256]={};//å¼€è¾Ÿç©ºé—´ç”¨äºä¿å­˜å“ˆå¤«æ›¼ç¼–ç  
+	getHCode(ht,root,0,Code);//ç”Ÿæˆå“ˆå¤«æ›¼ç¼–ç  
 	
 	FILE *fpIn=fopen("in.txt","rb");
 	FILE *fpOut=fopen("lock.txt","wb");
 	
 	Fhead filehead;
-	strcpy(filehead.flag,"bupt");//±êÊ¶·û£¬ÅĞ¶ÏÊÇ·ñÎª¸Ã³ÌĞòÉú³ÉµÄ¼ÓÃÜÎÄ¼ş 
-	filehead.last=getlastValidBit(ht);//ÎÄ¼ş×îºóÒ»¸ö×Ö½ÚµÄÓĞĞ§³¤¶È 
+	strcpy(filehead.flag,"bupt");//æ ‡è¯†ç¬¦ï¼Œåˆ¤æ–­æ˜¯å¦ä¸ºè¯¥ç¨‹åºç”Ÿæˆçš„åŠ å¯†æ–‡ä»¶ 
+	filehead.last=getlastValidBit(ht);//æ–‡ä»¶æœ€åä¸€ä¸ªå­—èŠ‚çš„æœ‰æ•ˆé•¿åº¦ 
 	
-	fwrite(&filehead,sizeof(Fhead),1,fpOut);//ÊäÈëÔªÊı¾İ 
-	fwrite(Num,sizeof(int),256,fpOut);//ÊäÈëÔ­ÎÄ¼ş¸÷×Ö·ûÆµ¶È 
+	fwrite(&filehead,sizeof(Fhead),1,fpOut);//è¾“å…¥å…ƒæ•°æ® 
+	fwrite(Num,sizeof(int),256,fpOut);//è¾“å…¥åŸæ–‡ä»¶å„å­—ç¬¦é¢‘åº¦ 
 	
-	/*°´Î»½øĞĞ¹ş·òÂü±àÂë*/
+	/*æŒ‰ä½è¿›è¡Œå“ˆå¤«æ›¼ç¼–ç */
 	int index=0;
 	unsigned char word,value=0;
 	char *code;
@@ -137,9 +138,9 @@ int main()
 		code=ht[word].code;
 		for(int i=0;code[i];i++){
 			if(code[i]=='0'){
-				value &= (~(1 << ((index) ^ 7))); //valueµÄindexÎ»¸³0 
+				value &= (~(1 << ((index) ^ 7))); //valueçš„indexä½èµ‹0 
 			}else{
-				value |= (1 << ((index) ^ 7)); //valueµÄindexÎ»¸³1 
+				value |= (1 << ((index) ^ 7)); //valueçš„indexä½èµ‹1 
 			}
 			index++;
 			if(index>=8)
