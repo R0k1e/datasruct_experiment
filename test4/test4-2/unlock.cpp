@@ -131,7 +131,7 @@ void Hdecoding(Node *ht,int root,char last)//解码函数
 			curLocation=ftell(fpIn);
 		}
 	}
-	printf("Coding success！\n");//解码成功，奖励自己 
+	printf("Coding success!\n");//解码成功，奖励自己 
 	fclose(fpIn);
 	fclose(fpOut);
 }
